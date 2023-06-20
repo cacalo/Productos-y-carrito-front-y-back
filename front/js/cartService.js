@@ -54,4 +54,20 @@ function actualizarNumeroCarrito(){
   }
 }
 
+async function comprarCarrito(){
+  const carrito = JSON.parse(localStorage.getItem("bicicletas"));
+  if(carrito && carrito.length > 0){
+    const res = await fetch("http://localhost:4000/carrito/comprar",{
+      method:"POST",
+      body: JSON.stringify(carrito),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    return res.ok;
+  }
+  return false;
+}
+
+
 actualizarNumeroCarrito();

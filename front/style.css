@@ -16,6 +16,10 @@ h3, p{
   margin: 6px 0;
 }
 
+h1{
+  text-align: center;
+}
+
 a{
   text-decoration: none;
   color: var(--color-texto)

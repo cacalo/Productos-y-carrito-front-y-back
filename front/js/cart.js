@@ -14,7 +14,7 @@ function crearTarjetasProductosInicio() {
       const nuevaBicicleta = document.createElement("div");
       nuevaBicicleta.classList = "tarjeta-producto";
       nuevaBicicleta.innerHTML = `
-      <img src="./img/productos/${producto.id}.jpg">
+      <img src="${producto.urlImagen}">
       <h3>${producto.nombre}</h3>
       <p>$${producto.precio}</p>
       <div>
@@ -27,7 +27,8 @@ function crearTarjetasProductosInicio() {
       nuevaBicicleta
         .getElementsByTagName("button")[1]
         .addEventListener("click", (e) => {
-          const cuentaElement = e.target.parentElement.getElementsByTagName("span")[0];
+          const cuentaElement =
+            e.target.parentElement.getElementsByTagName("span")[0];
           cuentaElement.innerText = agregarAlCarrito(producto);
           actualizarTotales();
         });
@@ -45,35 +46,47 @@ function crearTarjetasProductosInicio() {
 crearTarjetasProductosInicio();
 actualizarTotales();
 
-function actualizarTotales(){
+function actualizarTotales() {
   const productos = JSON.parse(localStorage.getItem("bicicletas"));
   let unidades = 0;
   let precio = 0;
-  if(productos && productos.length>0){
-    productos.forEach(producto =>{
+  if (productos && productos.length > 0) {
+    productos.forEach((producto) => {
       unidades += producto.cantidad;
       precio += producto.precio * producto.cantidad;
-    })
+    });
     unidadesElement.innerText = unidades;
     precioElement.innerText = precio;
   }
   revisarMensajeVacio();
 }
 
-function revisarMensajeVacio(){
+function revisarMensajeVacio() {
   const productos = JSON.parse(localStorage.getItem("bicicletas"));
-  console.log(productos, productos == true)
-  carritoVacioElement.classList.toggle("escondido",productos && productos.length>0);
-  totalesElement.classList.toggle("escondido",!(productos && productos.length>0));
+  console.log(productos, productos == true);
+  carritoVacioElement.classList.toggle(
+    "escondido",
+    productos && productos.length > 0
+  );
+  totalesElement.classList.toggle(
+    "escondido",
+    !(productos && productos.length > 0)
+  );
 }
 
 revisarMensajeVacio();
 
-
-
-reiniciarCarritoElement.addEventListener("click",reiniciarCarrito);
-function reiniciarCarrito(){
+reiniciarCarritoElement.addEventListener("click", reiniciarCarrito);
+function reiniciarCarrito() {
   localStorage.removeItem("bicicletas");
   actualizarTotales();
   crearTarjetasProductosInicio();
 }
+
+document.getElementById("comprar").addEventListener("click", async () => {
+  const res = await comprarCarrito();
+  if (res) {
+    reiniciarCarrito();
+    window.location.href = "http://127.0.0.1:5500/compra-exitosa.html";
+  }
+});
