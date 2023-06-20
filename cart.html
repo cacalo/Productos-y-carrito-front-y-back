@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="cart.css">
+	<script src="./js/cart.js" defer></script>
+	<script src="./js/cartService.js" defer></script>
+	<title>Bicicletas puntoJson - Carrito</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<a href="./index.html"><img src="./img/logo.png" id="logo" alt="Logo"></a>
+			<div>
+				<a href="#">MTB</a>
+				<a href="#">Ruta</a>
+				<a href="./cart.html" id="cart"><img src="./img/iconos/shopping-cart.png" alt="Carrito de compras"><span id="cuenta-carrito">0</span></a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<p id="carrito-vacio">Ups! No hay productos en el carrito. <a href="./index.html">Agrega algunos</a></p>
+		<section id="productos-container"></section>
+		<section id="totales">
+			<p>Total unidades: <span id="unidades">0</span></p>
+			<p>Total precio: $<span id="precio">0</span></p>
+			<button disabled>Comprar</button>
+			<button id="reiniciar">Reiniciar carrito</button>
+		</section>
+	</main>
+	<footer>
+		<p>Creado con amor por Calo de <a href="https://youtube.com/@puntoJson" target="_blank">puntoJson</a></p>
+		<p>¿Querés ver como lo hice? <a href="https://youtu.be/lduIpYA66mM" target="_blank">Entrá acá</a></p>
+	</footer>
+</body>
+</html>
